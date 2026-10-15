@@ -11,7 +11,28 @@
         "method": "GET",
         "header": [],
         "url": "{{base_url}}/api/users"
-      }
+      },
+      "response": [
+        {
+          "name": "200 OK - actual Flask response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/users"
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "[{\"address\":\"Beirut\",\"country\":\"Lebanon\",\"email\":\"fatima@example.com\",\"name\":\"Fatima Bazzoun\",\"phone\":\"03123456\",\"user_id\":1}]\n"
+        }
+      ]
     },
     {
       "name": "Get One User",
@@ -19,7 +40,28 @@
         "method": "GET",
         "header": [],
         "url": "{{base_url}}/api/users/{{user_id}}"
-      }
+      },
+      "response": [
+        {
+          "name": "200 OK - actual Flask response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/users/1"
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\"address\":\"Beirut\",\"country\":\"Lebanon\",\"email\":\"fatima@example.com\",\"name\":\"Fatima Bazzoun\",\"phone\":\"03123456\",\"user_id\":1}\n"
+        }
+      ]
     },
     {
       "name": "Add User",
@@ -59,7 +101,42 @@
           }
         },
         "url": "{{base_url}}/api/users/add"
-      }
+      },
+      "response": [
+        {
+          "name": "201 Created - actual Flask response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Fatima Bazzoun\",\n  \"email\": \"fatima@example.com\",\n  \"phone\": \"03123456\",\n  \"address\": \"Beirut\",\n  \"country\": \"Lebanon\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{base_url}}/api/users/add"
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\"message\":\"User added successfully.\",\"user_id\":1}\n"
+        }
+      ]
     },
     {
       "name": "Update User",
@@ -81,7 +158,42 @@
           }
         },
         "url": "{{base_url}}/api/users/update"
-      }
+      },
+      "response": [
+        {
+          "name": "200 OK - actual Flask response",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"user_id\":1,\"name\":\"Fatima Bazzoun\",\"email\":\"fatima.updated@example.com\",\"phone\":\"03999999\",\"address\":\"Beirut\",\"country\":\"Lebanon\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{base_url}}/api/users/update"
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\"message\":\"User updated successfully.\"}\n"
+        }
+      ]
     },
     {
       "name": "Delete User",
@@ -89,7 +201,28 @@
         "method": "DELETE",
         "header": [],
         "url": "{{base_url}}/api/users/delete/{{user_id}}"
-      }
+      },
+      "response": [
+        {
+          "name": "200 OK - actual Flask response",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/api/users/delete/1"
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\"message\":\"User deleted successfully.\"}\n"
+        }
+      ]
     }
   ]
 }
