@@ -6,21 +6,20 @@ import database
 
 
 class UserApiTests(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        handle, cls.test_db = tempfile.mkstemp(suffix=".db")
-        os.close(handle)
-        database.DATABASE = cls.test_db
+    def setUp(self):
+        test_directory = tempfile.TemporaryDirectory()
+        self.addCleanup(test_directory.cleanup)
+        original_database = database.DATABASE
+        self.addCleanup(setattr, database, "DATABASE", original_database)
+        database.DATABASE = os.path.join(test_directory.name, "test.db")
+        # app may already be imported by pytest; initialize each new DB explicitly.
+        database.create_db_table()
 
         from app import app
 
+        self.addCleanup(app.config.__setitem__, "TESTING", app.config["TESTING"])
         app.config["TESTING"] = True
-        cls.client = app.test_client()
-
-    @classmethod
-    def tearDownClass(cls):
-        if os.path.exists(cls.test_db):
-            os.remove(cls.test_db)
+        self.client = app.test_client()
 
     def test_all_api_operations(self):
         user = {
